@@ -1,3 +1,7 @@
 # Bootstrap-Portfolio
 
-The plain-CSS way of using Bootstrap by sprinkling (often duplicated) styling information across the HTML drives me absolutely crazy. I understand that Bootstrap can be used with SASS and a build process to avoid this problem, but I couldn't bring myself to learn all that just now. So I used as little Bootstrap as I could while fulfilling the specification. Basically just the navbar and form components, and some responsive layout classes so as to avoid media queries.
+I started off using Bootstrap with vanilla CSS to recreate the layout, but the practice of sprinkling styling information across the HTML, often repeating myself, drove me absolutely crazy. So I learned about Sass and incorporated Bootstrap into my own stylesheet via @extend and @include expressions.
+
+But the assignment isn't terribly grid-like, and Bootstrap's components never do quite what you want and using the cascade to override them drives me crazy, and the (non-responsive) utility classes are kind of pointless when building the site this way. So ultimately I wound up with code that only uses a little bit of Bootstrap. Basically just enough to avoid
+
+ I think I will find it most useful as a prototyping tool.

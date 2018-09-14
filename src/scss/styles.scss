@@ -1,0 +1,237 @@
+@import "node_modules/bootstrap/scss/bootstrap-grid";
+@import "node_modules/bootstrap/scss/mixins/breakpoints";
+@import "node_modules/bootstrap/scss/utilities/spacing";
+
+$teal: #4aaaa5;
+$border-gray: #ccc;
+$text-gray: #777;
+
+@mixin white-on-teal {
+    color: white;
+    background-color: $teal;
+}
+
+@mixin centered-white-on-teal {
+    @include white-on-teal;
+    text-align: center;
+}
+
+@mixin sans-serif {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+@mixin small-sans {
+    @include sans-serif;
+    font-size: 17px;
+    line-height: 2;
+}
+
+@mixin small-gray-sans {
+    @include small-sans;
+    color: $text-gray;
+}
+
+@mixin smaller-gray-sans {
+    @include sans-serif;
+    font-size: 14px;
+    line-height: 2;
+    color: $text-gray;
+}
+
+@mixin py($length) {
+    padding-top: $length;
+    padding-bottom: $length;
+}
+
+@mixin px($length) {
+    padding-left: $length;
+    padding-right: $length;
+}
+
+@mixin h($font-size) {
+    font-family: 'Georgia', Times, Times New Roman, serif;
+    font-weight: bold;
+    font-size: $font-size;
+    line-height: 1.5;
+    margin: 0;
+    padding: ($font-size * 0.80) 0;
+}
+
+
+* {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-flow: column;
+}
+
+
+header {
+    // The header padding is zeroed on xs/sm so the logo can be as wide as the viewport.
+    @extend .px-md-3;
+    background-color: white;
+    border-bottom: 2px solid $border-gray;
+}
+
+
+div.navbar {
+    @extend .row;
+    @extend .no-gutters;
+
+    a.logo {
+        @extend .col-12;
+        @extend .col-md-auto;
+        @include centered-white-on-teal;
+        @include h(30px);
+        @include px(1rem);
+    }
+
+    nav {
+        @extend .col-auto;
+    
+        // On xs/sm the nav has auto margins on both sides to center it under the logo. On larger sizes the left margin is still auto while the right margin is zeroed so the nav can stick to the right.
+        @extend .m-auto;
+        @extend .mr-md-0;
+    
+        padding: 1rem 0;
+        align-items: center;
+    
+        a {
+            @include small-gray-sans;
+            line-height: 1; // Make vertical separator height equal text height
+        }
+    
+        // Create vertical separators
+        a + a {
+            border-left: 1px solid $border-gray;
+            margin-left: 0.5rem;
+            padding-left: 0.5rem;
+        }
+    }
+}
+
+
+main {
+    // The vertical gap between the main content and the header shrinks on xs/sm.
+    @extend .p-3;
+    @extend .py-md-4;
+
+    background-image: url(/assets/dust_scratches.png);
+    flex-grow: 1; // For sticky footer
+
+    h1 {
+        @include h(30px);
+        color: $teal;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid $border-gray;
+    }
+
+    div.container-fluid {
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 0 1rem;
+    }
+}
+
+
+div.about {
+    img {
+        // Bootstap doesn't have a responsive version of .w-100 so I had to break out the responsive mixins
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+        }
+        @include media-breakpoint-up(md) {
+            float: left;
+            padding-top: 10px; // Aligns top of image with top of first p text.
+        }
+    
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        @include small-gray-sans;
+        margin-bottom: 1rem;
+    }
+}
+
+
+ul.projects {
+    @extend .row;
+    list-style-type: none;
+
+    li {
+        @extend .col-12;
+        @extend .col-md-6;
+        margin-bottom: 1rem;
+    
+        a {
+            @include centered-white-on-teal;
+            @include h(20px);
+        
+            position: absolute;
+            bottom: 5%;
+            width: calc(100% - 30px); // This is the least terrible way to make the title bar as wide as the image.
+        }
+    
+        img {
+            width: 100%;
+        }
+    }
+}
+
+
+form.contact {
+    margin-bottom: 1rem;
+
+    div.form-group {
+        margin-bottom: 0.75rem;
+
+        label {
+            @include small-gray-sans;
+        }
+    
+        input, textarea {
+            @include smaller-gray-sans;
+            display: block;
+            width: 100%;
+            padding: 0.25rem 0.25rem;
+            border: 1px solid $border-gray;
+        }
+    
+        #message {
+            height: 8rem;
+        }
+    }
+
+    button {
+        @include centered-white-on-teal;
+        @include small-sans;
+        color: white;
+        border: 1px solid transparent;
+        padding: 0.125rem 1rem;
+        cursor: pointer;
+    }
+}
+
+
+footer {
+    @include sans-serif;
+    border-top: 9px solid $teal;
+    background-color: #666;
+    font-size: 0.5rem;
+    line-height: 90px;
+    text-align: center;
+    color: white;
+}
+
+
+div.container-fluid {
+    padding: 0;
+    max-width: 960px;
+}

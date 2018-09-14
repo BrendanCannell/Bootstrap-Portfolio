@@ -2142,7 +2142,7 @@ div.navbar nav {
     padding-left: 0.5rem; }
 
 main {
-  background-image: url(/assets/dust_scratches.png);
+  background-image: url(../assets/dust_scratches.png);
   flex-grow: 1; }
   main h1 {
     font-family: 'Georgia', Times, Times New Roman, serif;
